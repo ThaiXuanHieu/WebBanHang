@@ -1,0 +1,89 @@
+﻿using System;
+using System.Web.Mvc;
+using WebBanHang.Common;
+using WebBanHang.Service;
+
+namespace WebBanHang.Web.Controllers
+{
+    public class AccountController : Controller
+    {
+        // GET: Account
+
+        private readonly IUserService userService;
+        private readonly IUserRoleService userRoleService;
+
+        public AccountController(IUserService userService, IUserRoleService userRoleService)
+        {
+            this.userService = userService;
+            this.userRoleService = userRoleService;
+        }
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(UserLoginModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = userService.GetUser(model.Username, PasswordHashMD5.MD5Hash(model.Password));
+                if (user == null)
+                {
+                    ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không tồn tại");
+                    return View("Index");
+                }
+                else
+                {
+                    var userRoles = userRoleService.GetByUserId(user.UserId);
+                    foreach (var userRole in userRoles)
+                    {
+                        if (userRole.UserRoleId == 1)
+                        {
+                            if (userRole.RoleId == 1)
+                            {
+                                Session["FullName"] = user.FirstName + " " + user.LastName;
+                                Session["UserId"] = user.UserId;
+                                Session["RoleId"] = userRole.RoleId;
+                                return Redirect("/Admin/Home/Index");
+                            }
+                            else
+                            {
+                                Session["FullName"] = user.FirstName + " " + user.LastName;
+                                Session["UserId"] = user.UserId;
+                                Session["RoleId"] = userRole.RoleId;
+                                return Redirect("/Home/Index");
+                            }
+                        }
+                        else
+                        {
+                            Session["FullName"] = user.FirstName + " " + user.LastName;
+                            Session["UserId"] = user.UserId;
+                            Session["RoleId"] = userRole.RoleId;
+                            return Redirect("/Home/Index");
+                        }
+                    }
+                }
+
+            }
+            return View("Index");
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return Redirect("/Home/Index");
+        }
+
+        public ActionResult Signup()
+        {
+            return View();
+        }
+
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+    }
+}
