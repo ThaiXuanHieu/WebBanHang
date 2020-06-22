@@ -57,7 +57,7 @@ namespace WebBanHang.Web.Controllers
                 var list = (List<CartViewModel>)cart;
                 if (list.Exists(p => p.Product.ProductId == id))
                 {
-                    foreach (var item in list)
+                    foreach (var item in list.Where(x => x.Product.ProductId == id))
                     {
                         item.Quantity += 1;
                     }
@@ -86,6 +86,7 @@ namespace WebBanHang.Web.Controllers
 
         public ActionResult DeleteItem(int id)
         {
+            decimal Amount = 0;
             var cart = Session[yourCart];
             var list = (List<CartViewModel>)cart;
             var product = productService.GetById(id);
@@ -93,12 +94,23 @@ namespace WebBanHang.Web.Controllers
             {
                 var item = list.Where(p => p.Product.ProductId == id).FirstOrDefault();
                 list.Remove(item);
-                if(list.Count == 0)
+                
+                foreach (var i in list)
                 {
+                    Amount += Convert.ToDecimal(i.Quantity * i.Product.NewPrice);
+                }
+
+                ViewBag.Amount = Amount;
+                ViewBag.Categories = categoryService.GetAll();
+
+                if (list.Count == 0)
+                {
+                    TempData["NotFoundMessage"] = "Không có sản phẩm nào trong giỏ hàng của bạn.";
                     list = null;
                 }
+
                 Session[yourCart] = list;
-                return RedirectToAction("Index");
+                return View("Index", list);
             }
             
             return View();

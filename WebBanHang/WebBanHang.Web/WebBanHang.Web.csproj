@@ -141,6 +141,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1996,6 +1997,7 @@
     <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\controller\cartController.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -2028,6 +2030,7 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Models\" />
     <Folder Include="UploadImage\" />
+    <Folder Include="Views\Orders\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
