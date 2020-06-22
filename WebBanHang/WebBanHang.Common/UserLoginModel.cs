@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace WebBanHang.Common
 {
@@ -14,7 +15,6 @@ namespace WebBanHang.Common
 
         [Required(ErrorMessage ="Mật khẩu không được để trống")]
         public string Password { get; set; }
-
 
     }
 }

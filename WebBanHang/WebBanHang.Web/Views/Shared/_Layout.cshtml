@@ -53,8 +53,16 @@
             {
                 <a href="/Home/Category/@item.CategoryId" class="item">@item.CategoryName.ToUpper()</a>
             }
-            <a href="/Cart/Index" class="item" style="float: right;">
+            <a href="/Cart/Index" class="item" style="float: right; padding-right: 30px">
                 <i class="fa fa-shopping-cart"></i> GIỎ HÀNG
+                @if (Session["YourCart"] == null)
+                {
+                    <span id="count-item">0</span>
+                }
+                else
+                {
+                    <span id="count-item">@ViewBag.CountItem</span>
+                }
             </a>
         </div>
     </div>

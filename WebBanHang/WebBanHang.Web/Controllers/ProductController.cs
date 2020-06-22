@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebBanHang.Common;
+using WebBanHang.Data.ViewModels;
 using WebBanHang.Service;
 
 namespace WebBanHang.Web.Controllers
@@ -30,6 +32,17 @@ namespace WebBanHang.Web.Controllers
             var product = productService.GetById(id);
             ViewBag.CategoryName = categoryService.GetById(Convert.ToInt32(product.CategoryId)).CategoryName;
             ViewBag.Categories = categoryService.GetAll();
+            var cart = Session[UserSession.yourCart];
+            var list = new List<CartViewModel>();
+            if (cart != null)
+            {
+                list = (List<CartViewModel>)cart;
+                ViewBag.CountItem = list.Count;
+            }
+            else
+            {
+                ViewBag.CountItem = 0;
+            }
             return View(product);
         }
     }

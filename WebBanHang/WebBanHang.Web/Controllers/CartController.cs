@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebBanHang.Common;
 using WebBanHang.Data.DomainModels;
 using WebBanHang.Data.ViewModels;
 using WebBanHang.Service;
@@ -14,7 +15,7 @@ namespace WebBanHang.Web.Controllers
         private readonly IProductService productService;
         private readonly ICategoryService categoryService;
 
-        private const string yourCart = "YourCart";
+        //private const string yourCart = "YourCart";
 
         public CartController(IProductService productService, ICategoryService categoryService)
         {
@@ -27,7 +28,7 @@ namespace WebBanHang.Web.Controllers
         public ActionResult Index()
         {
             decimal Amount = 0;
-            var cart = Session[yourCart];
+            var cart = Session[UserSession.yourCart];
             var list = new List<CartViewModel>();
             if (cart != null)
             {
@@ -36,12 +37,15 @@ namespace WebBanHang.Web.Controllers
                 {
                     Amount += Convert.ToDecimal(item.Quantity * item.Product.NewPrice);
                 }
+
+                ViewBag.CountItem = list.Count;
                 ViewBag.Amount = Amount;
                 ViewBag.Categories = categoryService.GetAll();
                 return View(list);
             }
             else
             {
+                ViewBag.CountItem = list.Count;
                 TempData["NotFoundMessage"] = "Không có sản phẩm nào trong giỏ hàng của bạn.";
                 ViewBag.Categories = categoryService.GetAll();
                 return View(list);
@@ -51,7 +55,7 @@ namespace WebBanHang.Web.Controllers
         public ActionResult AddToCart(int id)
         {
             var product = productService.GetById(id);
-            var cart = Session[yourCart];
+            var cart = Session[UserSession.yourCart];
             if (cart != null)
             {
                 var list = (List<CartViewModel>)cart;
@@ -69,7 +73,7 @@ namespace WebBanHang.Web.Controllers
                     item.Quantity = 1;
                     list.Add(item);
                 }
-                Session[yourCart] = list;
+                Session[UserSession.yourCart] = list;
                 
             }
             else
@@ -79,7 +83,7 @@ namespace WebBanHang.Web.Controllers
                 item.Quantity = 1;
                 var list = new List<CartViewModel>();
                 list.Add(item);
-                Session[yourCart] = list;
+                Session[UserSession.yourCart] = list;
             }
             return RedirectToAction("Index");
         }
@@ -87,7 +91,7 @@ namespace WebBanHang.Web.Controllers
         public ActionResult DeleteItem(int id)
         {
             decimal Amount = 0;
-            var cart = Session[yourCart];
+            var cart = Session[UserSession.yourCart];
             var list = (List<CartViewModel>)cart;
             var product = productService.GetById(id);
             if(list.Exists(p => p.Product.ProductId == id))
@@ -100,6 +104,7 @@ namespace WebBanHang.Web.Controllers
                     Amount += Convert.ToDecimal(i.Quantity * i.Product.NewPrice);
                 }
 
+                ViewBag.CountItem = list.Count;
                 ViewBag.Amount = Amount;
                 ViewBag.Categories = categoryService.GetAll();
 
@@ -109,7 +114,7 @@ namespace WebBanHang.Web.Controllers
                     list = null;
                 }
 
-                Session[yourCart] = list;
+                Session[UserSession.yourCart] = list;
                 return View("Index", list);
             }
             
