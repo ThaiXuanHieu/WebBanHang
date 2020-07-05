@@ -15,7 +15,7 @@ namespace WebBanHang.Web
 
             routes.MapRoute(
                 name: "Home",
-                url: "trang-chu",
+                url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 namespaces: new string[] { "WebBanHang.Web.Controllers" }
             );

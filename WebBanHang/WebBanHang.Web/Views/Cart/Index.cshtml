@@ -26,9 +26,9 @@ else
                     <div class="col product-img">
                         <a href="chitiet.html"><img src="~/Assets/img/products/@item.Product.ProductImage" alt="" width="200" height="200"></a>
                         <div class="choosequantity" style="text-align: center;">
-                            <button onclick="changeQuantity('-')" id="decrement" data-id="@item.Product.ProductId" style="width:25px">-</button>
-                            <input id="quantity" type="text" value="@item.Quantity" style="width:20px">
-                            <button onclick="changeQuantity('+')" id="increment" data-id="@item.Product.ProductId" style="width:25px">+</button>
+                            <button onclick="changeQuantity(this)" class="decrement" data-id="@item.Product.ProductId" style="width:25px">-</button>
+                            <input class="quantity" type="text" value="@item.Quantity" data-id="@item.Product.ProductId" style="width:20px">
+                            <button onclick="changeQuantity(this)" class="increment" data-id="@item.Product.ProductId" style="width:25px">+</button>
                         </div>
                     </div>
                     <div class="col product-info">
@@ -45,9 +45,6 @@ else
                 </div>
             </div>
         }
-        <script type="text/javascript">
-
-        </script>
         <div class="total" style="padding: 0px 30px">
             <b style="float: left;">Cần thanh toán:</b>
             <strong style="float: right;">@String.Format(new CultureInfo("vi-VN"), "{0:#,##0.00}", ViewBag.Amount)₫</strong>
@@ -55,14 +52,14 @@ else
         <br><br>
         <hr class="hr" color="#ED0D8C">
 
-        <form action="" method="post">
+        <form action="/Orders/Index" method="post">
             <input type="radio" name="gender" value="Anh" checked> Anh
             <input type="radio" name="gender" value="Chị"> Chị
             <br><br>
-            <input type="text" name="" id="fullname" class="txt txtFullName" placeholder="  Họ và Tên">
-            <input type="text" name="" id="phone" class="txt txtNumberPhone" placeholder="  Số điện thoại">
+            <input type="text" name="fullname" id="fullname" class="txt txtFullName" placeholder="  Họ và Tên">
+            <input type="text" name="phone" id="phone" class="txt txtNumberPhone" placeholder="  Số điện thoại">
             <br><br>
-            <input type="text" name="" id="address" class="txt txtAddress" placeholder="  Địa chỉ giao hàng">
+            <input type="text" name="address" id="address" class="txt txtAddress" placeholder="  Địa chỉ giao hàng">
 
             <div class="mode-pay">
                 <button type="submit" class="btn btn-mode-1">Thanh toán khi nhận hàng</button>
@@ -71,4 +68,9 @@ else
         </form>
     </div>
 
+}
+
+@section Scripts {
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Assets/js/main.js"></script>
 }

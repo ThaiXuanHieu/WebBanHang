@@ -18,13 +18,17 @@ namespace WebBanHang.Web.Controllers
             this.userRoleService = userRoleService;
         }
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
+            ViewBag.ReturnUrl = Request.UrlReferrer.ToString();
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(UserLoginModel model)
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(UserLoginModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -61,7 +65,7 @@ namespace WebBanHang.Web.Controllers
                             Session["FullName"] = user.FirstName + " " + user.LastName;
                             Session["UserId"] = user.UserId;
                             Session["RoleId"] = userRole.RoleId;
-                            return Redirect("/Home/Index");
+                            return Redirect(returnUrl);
                         }
                     }
                 }
@@ -85,5 +89,6 @@ namespace WebBanHang.Web.Controllers
         {
             return View();
         }
+        
     }
 }

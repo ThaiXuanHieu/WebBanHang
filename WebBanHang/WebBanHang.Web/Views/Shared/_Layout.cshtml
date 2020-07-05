@@ -11,14 +11,13 @@
     <link rel="icon" href="~/Assets/img/page/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="~/Assets/css/style.css" rel="stylesheet" />
-    <script src="~/Assets/js/main.js"></script>
     <title>Web Bán Mỹ Phẩm</title>
 </head>
 
 <body>
     <header id="header">
         <div class="account">
-            <lable id="account-info"></lable>
+            <a href="#" id="account-info" style="text-decoration:none; color:#ED0D8C"></a>
             <a href="/Account/Index" class="btn btn-jumpToLogin">
                 Đăng nhập
             </a>
@@ -97,6 +96,7 @@
             © Bản quyền thuộc Nhóm 3 - Lập trình Web - GV : Lê Văn Thành
         </div>
     </footer>
+    @RenderSection("scripts", required: false)
 </body>
 
 </html>

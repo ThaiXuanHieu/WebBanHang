@@ -21,8 +21,6 @@ namespace WebBanHang.Web.Controllers
         {
             this.productService = productService;
             this.categoryService = categoryService;
-
-
         }
         // GET: Cart
         public ActionResult Index()
@@ -86,6 +84,34 @@ namespace WebBanHang.Web.Controllers
                 Session[UserSession.yourCart] = list;
             }
             return RedirectToAction("Index");
+        }
+
+        public JsonResult UpdateCart(int id, int quantity)
+        {
+            decimal Amount = 0;
+            var product = productService.GetById(id);
+            var cart = Session[UserSession.yourCart];
+            if (cart != null)
+            {
+                var list = (List<CartViewModel>)cart;
+                if (list.Exists(p => p.Product.ProductId == id))
+                {
+                    foreach (var item in list.Where(x => x.Product.ProductId == id))
+                    {
+                        item.Quantity = quantity;
+                    }
+                }
+                foreach (var item in list)
+                {
+                    Amount += Convert.ToDecimal(item.Quantity * item.Product.NewPrice);
+                }
+                
+                ViewBag.Amount = Amount;
+
+                Session[UserSession.yourCart] = list;
+
+            }
+            return Json(new { status = true });
         }
 
         public ActionResult DeleteItem(int id)

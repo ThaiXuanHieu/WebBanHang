@@ -20,11 +20,15 @@ namespace WebBanHang.Web
             container.RegisterType<ICategoryService, CategoryService>();
             container.RegisterType<ISupplierService, SupplierService>();
             container.RegisterType<IProductService, ProductService>();
+            container.RegisterType<IOrdersService, OrdersService>();
+            container.RegisterType<IOrderDetailService, OrderDetailService>();
             container.RegisterType<IUserRoleRepository, UserRoleRepository>();
             container.RegisterType<IUserRepository, UserRepository>();
             container.RegisterType<ICategoryRepository, CategoryRepository>();
             container.RegisterType<ISupplierRepository, SupplierRepository>();
             container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType<IOrdersRepository, OrdersRepository>();
+            container.RegisterType<IOrderDetailRepository, OrderDetailRepository>();
             // register all your components with the container here
             // it is NOT necessary to register your controllers
 

@@ -24,6 +24,17 @@ namespace WebBanHang.Web.Controllers
         {
             ViewBag.Categories = categoryService.GetAll();
             ViewBag.Products = productService.GetAll();
+            var cart = Session[UserSession.yourCart];
+            var list = new List<CartViewModel>();
+            if (cart != null)
+            {
+                list = (List<CartViewModel>)cart;
+                ViewBag.CountItem = list.Count;
+            }
+            else
+            {
+                ViewBag.CountItem = 0;
+            }
             return View();
         }
 
