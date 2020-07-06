@@ -23,6 +23,9 @@
         text-align: left;
         padding: 8px;
     }
+    td img {
+        vertical-align: middle;
+    }
 </style>
 
 <div style="text-align: center; color:green; font-size: 20px; margin-top: 10px">Quý khách đã đặt hàng thành công</div>
@@ -49,10 +52,13 @@
             @foreach (var item in orderDetail)
             {
                 <tr>
-                    <td>@item.Product.ProductName</td>
+                    <td>
+                        <img src="~/UploadImage/@item.Product.ProductImage" style="width:50px; height:50px" />
+                        @item.Product.ProductName
+                    </td>
                     <td>@item.Product.NewPrice</td>
                     <td>@item.Quantity</td>
-                    <td>@(item.Quantity * @item.Product.NewPrice)</td>
+                    <td>@String.Format(new CultureInfo("vi-VN"), "{0:#,##0.00}", (item.Quantity * @item.Product.NewPrice))₫</td>
                 </tr>
             }
         </tbody>
