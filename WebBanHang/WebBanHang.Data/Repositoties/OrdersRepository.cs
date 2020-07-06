@@ -10,7 +10,7 @@ namespace WebBanHang.Data.Repositoties
 {
     public interface IOrdersRepository : IRepository<Order>
     {
-
+        int Insert(Order order);
     }
 
     public class OrdersRepository : RepositoryBase<Order>, IOrdersRepository
@@ -18,6 +18,20 @@ namespace WebBanHang.Data.Repositoties
         public OrdersRepository(IDatabaseFactory databaseFactory) : base(databaseFactory)
         {
 
+        }
+
+        public int Insert(Order order)
+        {
+            try
+            {
+                Context.Orders.Add(order);
+                Context.SaveChanges();
+                return order.OrderId;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
     }
 }

@@ -12,6 +12,8 @@ namespace WebBanHang.Service
     public interface IUserService
     {
         User GetUser(string username, string passwordHash);
+        User GetById(int id);
+        void Update(User user);
     }
 
     public class UserService : IUserService
@@ -24,9 +26,20 @@ namespace WebBanHang.Service
             this.unitOfWork = unitOfWork;
         }
 
+        public User GetById(int id)
+        {
+            return userRepository.GetById(id);
+        }
+
         public User GetUser(string username, string passwordHash)
         {
             return userRepository.GetUser(username, passwordHash);
+        }
+
+        public void Update(User user)
+        {
+            userRepository.Update(user);
+            unitOfWork.Commit();
         }
     }
 }

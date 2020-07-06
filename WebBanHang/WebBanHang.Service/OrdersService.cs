@@ -13,6 +13,7 @@ namespace WebBanHang.Service
     {
         void Add(Order orders);
         Order GetById(int id);
+        int Insert(Order order);
     }
 
     public class OrdersService : IOrdersService
@@ -35,6 +36,11 @@ namespace WebBanHang.Service
         public Order GetById(int id)
         {
             return ordersRepository.GetById(id);
+        }
+
+        public int Insert(Order order)
+        {
+            return ordersRepository.Insert(order);
         }
     }
 }

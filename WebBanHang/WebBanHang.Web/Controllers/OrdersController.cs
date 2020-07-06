@@ -16,13 +16,15 @@ namespace WebBanHang.Web.Controllers
         private readonly ICategoryService categoryService;
         private readonly IOrdersService ordersService;
         private readonly IOrderDetailService orderDetailService;
+        private readonly IUserService userService;
 
-        public OrdersController(IProductService productService, ICategoryService categoryService, IOrdersService ordersService, IOrderDetailService orderDetailService)
+        public OrdersController(IProductService productService, ICategoryService categoryService, IOrdersService ordersService, IOrderDetailService orderDetailService, IUserService userService)
         {
             this.productService = productService;
             this.categoryService = categoryService;
             this.ordersService = ordersService;
             this.orderDetailService = orderDetailService;
+            this.userService = userService;
         }
         // GET: Orders
         public ActionResult Index(string fullname, string phone, string address)
@@ -31,7 +33,7 @@ namespace WebBanHang.Web.Controllers
             {
                 return Redirect("/Account/Index");
             }
-
+            decimal Amount = 0;
             ViewBag.Categories = categoryService.GetAll();
             ViewBag.Products = productService.GetAll();
             var cart = Session[UserSession.yourCart];
@@ -50,18 +52,27 @@ namespace WebBanHang.Web.Controllers
             order.UserId = Convert.ToInt32(Session["UserId"]);
             order.OrderDate = DateTime.Now;
 
-            ordersService.Add(order);
+            var id = ordersService.Insert(order);
 
             foreach(var item in list)
             {
                 var orderDetail = new OrderDetail();
-                orderDetail.OrderId = 1;
+                orderDetail.OrderId = id;
                 orderDetail.ProductId = item.Product.ProductId;
                 orderDetail.Quantity = item.Quantity;
+
+                Amount += Convert.ToDecimal(item.Quantity * item.Product.NewPrice);
+
                 orderDetailService.Add(orderDetail);
             }
-
-            return View();
+            ViewBag.Amount = Amount;
+            ViewBag.OrderDetail = list;
+            var userUpdate = userService.GetById(Convert.ToInt32(ordersService.GetById(id).UserId));
+            userUpdate.PhoneNumber = phone;
+            userUpdate.Address = address;
+            userService.Update(userUpdate);
+            var user = userService.GetById(Convert.ToInt32(ordersService.GetById(id).UserId));
+            return View(user);
         }
     }
 }
