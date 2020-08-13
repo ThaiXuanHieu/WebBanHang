@@ -17,6 +17,7 @@ namespace WebBanHang.Service
         void Delete(int id);
         IEnumerable<ProductViewModel> GetList();
         Product GetById(int id);
+        Product GetByMetaTitle(string metatitle);
         IEnumerable<Product> GetAll();
         IEnumerable<Product> GetByCategoryId(int categoryId);
         IEnumerable<Product> GetMany(string searchString);
@@ -59,6 +60,11 @@ namespace WebBanHang.Service
         public Product GetById(int id)
         {
             return productRepository.GetById(id);
+        }
+
+        public Product GetByMetaTitle(string metatitle)
+        {
+            return productRepository.GetByMetaTitle(metatitle);
         }
 
         public IEnumerable<ProductViewModel> GetList()

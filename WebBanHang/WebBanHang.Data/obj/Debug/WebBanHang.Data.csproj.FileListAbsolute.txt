@@ -17,8 +17,8 @@ F:\WebBanHang\WebBanHang\WebBanHang.Data\bin\Debug\EntityFramework.dll
 F:\WebBanHang\WebBanHang\WebBanHang.Data\bin\Debug\EntityFramework.SqlServer.dll
 F:\WebBanHang\WebBanHang\WebBanHang.Data\bin\Debug\EntityFramework.xml
 F:\WebBanHang\WebBanHang\WebBanHang.Data\bin\Debug\EntityFramework.SqlServer.xml
-F:\WebBanHang\WebBanHang\WebBanHang.Data\obj\Debug\WebBanHang.Data.csprojAssemblyReference.cache
 F:\WebBanHang\WebBanHang\WebBanHang.Data\obj\Debug\WebBanHang.Data.csproj.CoreCompileInputs.cache
 F:\WebBanHang\WebBanHang\WebBanHang.Data\obj\Debug\WebBanHang.Data.csproj.CopyComplete
 F:\WebBanHang\WebBanHang\WebBanHang.Data\obj\Debug\WebBanHang.Data.dll
 F:\WebBanHang\WebBanHang\WebBanHang.Data\obj\Debug\WebBanHang.Data.pdb
+F:\WebBanHang\WebBanHang\WebBanHang.Data\obj\Debug\WebBanHang.Data.csprojAssemblyReference.cache

@@ -26,6 +26,8 @@
         [Display(Name = "Danh mục")]
         public int? CategoryId { get; set; }
 
+        public string MetaTitle { get; set; }
+
         [StringLength(100)]
         [Display(Name = "Hình ảnh")]
         public string ProductImage { get; set; }

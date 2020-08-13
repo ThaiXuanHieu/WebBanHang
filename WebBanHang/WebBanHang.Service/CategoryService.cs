@@ -17,6 +17,7 @@ namespace WebBanHang.Service
         IEnumerable<Category> GetAll();
         IEnumerable<Category> GetMany(string searchString);
         Category GetById(int id);
+        Category GetByMetaTitle(string metatitle);
     }
 
     public class CategoryService : ICategoryService
@@ -51,6 +52,11 @@ namespace WebBanHang.Service
         public Category GetById(int id)
         {
             return categoryRepository.GetById(id);
+        }
+
+        public Category GetByMetaTitle(string metatitle)
+        {
+            return categoryRepository.GetByMetaTitle(metatitle);
         }
 
         public IEnumerable<Category> GetMany(string searchString)

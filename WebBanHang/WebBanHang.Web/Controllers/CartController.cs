@@ -141,7 +141,7 @@ namespace WebBanHang.Web.Controllers
                 }
 
                 Session[UserSession.yourCart] = list;
-                return View("Index", list);
+                return RedirectToAction("Index");
             }
             
             return View();

@@ -14,12 +14,13 @@
     <div class="container">
         @foreach (var item in Model)
         {
+            var url = "/san-pham/" + @item.MetaTitle;
             <div class="product">
-                <a href="/Product/ProductDetail/@item.ProductId">
+                <a href="@url">
                     <img src="~/Assets/img/products/@item.ProductImage" alt="" width="300" height="300">
                 </a><br>
                 <div class="product-info">
-                    <a href="/Product/ProductDetail/1" class="product-name">@item.ProductName</a>
+                    <a href="@url" class="product-name">@item.ProductName</a>
                     <div class="price">
                         @if (item.NewPrice != null)
                         {

@@ -6,7 +6,7 @@
 }
 
 <div class="bar-top">
-    <a href="/Home/Index" class="buymore">&#10094; Mua thêm sản phẩm khác</a>
+    <a href="/" class="buymore">&#10094; Mua thêm sản phẩm khác</a>
     <div class="yourcart" style="float: right;">Giỏ hàng của bạn</div>
 </div>
 
@@ -21,10 +21,11 @@ else
     <div class="container-cart">
         @foreach (var item in Model)
         {
+            var url = "/san-pham/" + @item.Product.MetaTitle;
             <div class="cart-item">
                 <div class="product">
                     <div class="col product-img">
-                        <a href="chitiet.html"><img src="~/Assets/img/products/@item.Product.ProductImage" alt="" width="200" height="200"></a>
+                        <a href="@url"><img src="~/Assets/img/products/@item.Product.ProductImage" alt="" width="200" height="200"></a>
                         <div class="choosequantity" style="text-align: center;">
                             <button onclick="changeQuantity(this)" class="decrement" data-id="@item.Product.ProductId" style="width:25px">-</button>
                             <input class="quantity" type="text" value="@item.Quantity" data-id="@item.Product.ProductId" style="width:20px">
@@ -52,7 +53,7 @@ else
         <br><br>
         <hr class="hr" color="#ED0D8C">
 
-        <form action="/Orders/Index" method="post">
+        <form action="/hoa-don" method="post">
             <input type="radio" name="gender" value="Anh" checked> Anh
             <input type="radio" name="gender" value="Chị"> Chị
             <br><br>

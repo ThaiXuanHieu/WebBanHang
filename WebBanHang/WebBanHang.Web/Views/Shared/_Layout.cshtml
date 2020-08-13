@@ -18,7 +18,7 @@
     <header id="header">
         <div class="account">
             <a href="#" id="account-info" style="text-decoration:none; color:#ED0D8C"></a>
-            <a href="/Account/Index" class="btn btn-jumpToLogin">
+            <a href="/dang-nhap" class="btn btn-jumpToLogin">
                 Đăng nhập
             </a>
             @if (Session["FullName"] != null)
@@ -27,13 +27,13 @@
                     document.getElementsByClassName('btn-jumpToLogin')[0].classList.add('btn-logout');
                     document.getElementsByClassName('btn-jumpToLogin')[0].classList.remove('btn-jumpToLogin');
                     document.getElementsByClassName('btn-logout')[0].innerHTML = 'Đăng xuất';
-                    document.getElementsByClassName('btn-logout')[0].href = "/Account/Logout";
+                    document.getElementsByClassName('btn-logout')[0].href = "/dang-xuat";
                     document.getElementById('account-info').innerHTML = 'Xin chào: @Session["FullName"] | ';
                 </script>
             }
         </div>
         <div class="container">
-            <a href="/Home/Index"><img class="logo" src="~/Assets/img/page/logo.png" alt="" height="80px"></a>
+            <a href="/"><img class="logo" src="~/Assets/img/page/logo.png" alt="" height="80px"></a>
             <form action="/Home/SearchProduct" method="POST">
                 <input type="text" name="" id="" placeholder="  Tìm kiếm..." class="search-box txt">
                 <button type="submit"><i class="fa fa-search"></i></button>
@@ -42,7 +42,7 @@
     </header>
     <div class="nav">
         <div class="nav-item">
-            <a href="/Home/Index" class="item"><i class="fa fa-home"></i> TRANG CHỦ</a>
+            <a href="/" class="item"><i class="fa fa-home"></i> TRANG CHỦ</a>
             @* <a href="/Home/MyPham" class="item">MỸ PHẨM TRUNG QUỐC</a>
                 <a href="/Home/TrangDiem" class="item">TRANG ĐIỂM</a>
                 <a href="/Home/DuongDa" class="item">DƯỠNG DA</a>
@@ -50,9 +50,10 @@
                 <a href="/Home/NuocHoa" class="item">NƯỚC HOA</a>*@
             @foreach (var item in Categories)
             {
-                <a href="/Home/Category/@item.CategoryId" class="item">@item.CategoryName.ToUpper()</a>
+                var url = "/danh-muc/" + item.MetaTitle;
+                <a href="@url" class="item">@item.CategoryName.ToUpper()</a>
             }
-            <a href="/Cart/Index" class="item" style="float: right; padding-right: 30px">
+            <a href="/gio-hang" class="item" style="float: right; padding-right: 30px">
                 <i class="fa fa-shopping-cart"></i> GIỎ HÀNG
                 @if (Session["YourCart"] == null)
                 {
@@ -71,10 +72,10 @@
             <div class="info col">
                 <h3 class="title-col">THÔNG TIN CHUNG</h3>
                 <ul>
-                    <li><a href="">Về chúng tôi</a></li>
-                    <li><a href="">Chính sách vận chuyển</a></li>
-                    <li><a href="">Chính sách trả hàng</a></li>
-                    <li><a href="">Chính sách riêng tư</a></li>
+                    <li><a href="/ve-chung-toi">Về chúng tôi</a></li>
+                    <li><a href="/chinh-sach">Chính sách vận chuyển</a></li>
+                    <li><a href="/chinh-sach">Chính sách trả hàng</a></li>
+                    <li><a href="/chinh-sach">Chính sách riêng tư</a></li>
                 </ul>
             </div>
             <div class="customer-care col">

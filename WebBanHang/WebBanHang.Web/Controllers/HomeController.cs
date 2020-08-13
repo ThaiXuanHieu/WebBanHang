@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebBanHang.Common;
+using WebBanHang.Data.DomainModels;
 using WebBanHang.Data.ViewModels;
 using WebBanHang.Service;
 
@@ -38,9 +39,10 @@ namespace WebBanHang.Web.Controllers
             return View();
         }
 
-        public ActionResult Category(int id)
+        public ActionResult Category(string metatitle)
         {
-            ViewBag.Category = categoryService.GetById(id);
+            Category category = categoryService.GetByMetaTitle(metatitle);
+            ViewBag.Category = categoryService.GetById(category.CategoryId);
             ViewBag.Categories = categoryService.GetAll();
             var cart = Session[UserSession.yourCart];
             var list = new List<CartViewModel>();
@@ -53,7 +55,7 @@ namespace WebBanHang.Web.Controllers
             {
                 ViewBag.CountItem = 0;
             }
-            return View(productService.GetByCategoryId(id));
+            return View(productService.GetByCategoryId(category.CategoryId));
         }
 
     }

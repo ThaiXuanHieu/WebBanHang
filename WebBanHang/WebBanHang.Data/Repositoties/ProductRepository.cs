@@ -13,6 +13,7 @@ namespace WebBanHang.Data.Repositoties
     {
         IEnumerable<ProductViewModel> GetList();
         IEnumerable<Product> GetByCategoryId(int categoryId);
+        Product GetByMetaTitle(string metatitle);
     }
 
     public class ProductRepository : RepositoryBase<Product>, IProductRepository
@@ -25,6 +26,11 @@ namespace WebBanHang.Data.Repositoties
         public IEnumerable<Product> GetByCategoryId(int categoryId)
         {
             return Context.Products.Where(p => p.CategoryId == categoryId).ToList();
+        }
+
+        public Product GetByMetaTitle(string metatitle)
+        {
+            return Context.Products.Where(p => p.MetaTitle.Equals(metatitle)).FirstOrDefault();
         }
 
         public IEnumerable<ProductViewModel> GetList()

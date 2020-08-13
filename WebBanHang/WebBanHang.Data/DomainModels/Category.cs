@@ -20,6 +20,7 @@
         [StringLength(50)]
         [Display(Name ="Tên danh mục")]
         public string CategoryName { get; set; }
+        public string MetaTitle { get; set; }
         [Display(Name ="Mô tả")]
         public string Description { get; set; }
 

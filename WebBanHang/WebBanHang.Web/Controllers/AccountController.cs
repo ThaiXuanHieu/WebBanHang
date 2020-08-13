@@ -21,6 +21,12 @@ namespace WebBanHang.Web.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
+            var url = Request.UrlReferrer;
+            if(url == null)
+            {
+                ViewBag.ReturnUrl = "/";
+                return View();
+            }
             ViewBag.ReturnUrl = Request.UrlReferrer.ToString();
             return View();
         }
@@ -57,7 +63,7 @@ namespace WebBanHang.Web.Controllers
                                 Session["FullName"] = user.FirstName + " " + user.LastName;
                                 Session["UserId"] = user.UserId;
                                 Session["RoleId"] = userRole.RoleId;
-                                return Redirect("/Home/Index");
+                                return Redirect("/");
                             }
                         }
                         else
@@ -77,7 +83,7 @@ namespace WebBanHang.Web.Controllers
         public ActionResult Logout()
         {
             Session.Clear();
-            return Redirect("/Home/Index");
+            return Redirect("/");
         }
 
         public ActionResult Signup()

@@ -31,7 +31,7 @@ namespace WebBanHang.Web.Controllers
         {
             if (Session["UserId"] == null || Session["UserId"].ToString() == null)
             {
-                return Redirect("/Account/Index");
+                return Redirect("/dang-nhap");
             }
             decimal Amount = 0;
             ViewBag.Categories = categoryService.GetAll();
