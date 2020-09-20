@@ -12,7 +12,8 @@ namespace WebBanHang.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+            routes.MapMvcAttributeRoutes();
+            AreaRegistration.RegisterAllAreas();
             routes.MapRoute(
                 name: "Product",
                 url: "san-pham/{metatitle}",

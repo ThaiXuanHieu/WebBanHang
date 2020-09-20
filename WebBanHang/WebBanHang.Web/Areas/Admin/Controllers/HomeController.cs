@@ -6,9 +6,13 @@ using System.Web.Mvc;
 
 namespace WebBanHang.Web.Areas.Admin.Controllers
 {
+    [RouteArea("Admin")]
+    [RoutePrefix("quan-tri")]
+    [Route("action = Index")]
     public class HomeController : Controller
     {
         // GET: Admin/Home
+        [Route("trang-chu")]
         public ActionResult Index()
         {
             if(Session["UserId"] == null || Session["UserId"].ToString() == null)

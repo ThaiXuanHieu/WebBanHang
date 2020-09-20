@@ -8,6 +8,8 @@ using WebBanHang.Service;
 
 namespace WebBanHang.Web.Areas.Admin.Controllers
 {
+    [RouteArea("Admin")]
+    [RoutePrefix("quan-tri")]
     public class CategoryController : Controller
     {
         private readonly ICategoryService categoryService;
@@ -17,6 +19,7 @@ namespace WebBanHang.Web.Areas.Admin.Controllers
             this.categoryService = categoryService;
         }
         // GET: Admin/Category
+        [Route("danh-muc")]
         public ActionResult Index()
         {
             return View(categoryService.GetAll());

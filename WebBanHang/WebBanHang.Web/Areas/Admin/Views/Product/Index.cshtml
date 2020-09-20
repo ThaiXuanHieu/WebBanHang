@@ -11,10 +11,10 @@
     <h2>Quản lý sản phẩm</h2>
     <div style="display: flex">
         <div style="margin-bottom:20px">
-            <a href="/Admin/Product/Create" class="btn btn-primary"><i class="fas fa-plus"></i> Thêm sản phẩm</a>
+            <a href="/Admin/quan-tri/tao-san-pham" class="btn btn-primary"><i class="fas fa-plus"></i> Thêm sản phẩm</a>
         </div>
         <div style="width:400px; margin:0px 0px 20px 30px">
-            <form action="/Admin/Product/Search" method="get">
+            <form action="/Admin/quan-tri/tim-kiem" method="get">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Nhập tên sản phẩm" name="searchString">
                     <div class="input-group-btn">
@@ -52,7 +52,7 @@
                         <td>@item.SupplierName</td>
                         <td>@String.Format(new CultureInfo("vi-VN"), "{0:#,##0.00}", item.OldPrice)₫</td>
                         <td>
-                            <a href="/Admin/Product/Edit/@item.ProductId" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                            <a href="/Admin/quan-tri/sua-san-pham/@item.ProductId" class="btn btn-warning"><i class="fas fa-edit"></i></a>
                             <a href="#delete-modal-@item.ProductId" data-toggle="modal" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>

@@ -10,6 +10,8 @@ using WebBanHang.Service;
 
 namespace WebBanHang.Web.Areas.Admin.Controllers
 {
+    [RouteArea("Admin")]
+    [RoutePrefix("quan-tri")]
     public class ProductController : Controller
     {
 
@@ -25,6 +27,7 @@ namespace WebBanHang.Web.Areas.Admin.Controllers
         }
 
         // GET: Admin/Product
+        [Route("san-pham")]
         public ActionResult Index()
         {
             var dataTable = productService.GetList();
@@ -37,6 +40,7 @@ namespace WebBanHang.Web.Areas.Admin.Controllers
             ViewBag.SupplierId = new SelectList(supplierService.GetAll(), "SupplierId", "SupplierName", supplierId);
         }
 
+        [Route("tao-san-pham")]
         public ActionResult Create()
         {
             SetViewBag();
@@ -76,6 +80,7 @@ namespace WebBanHang.Web.Areas.Admin.Controllers
             return View("Create");
         }
 
+        [Route("sua-san-pham/{id}")]
         public ActionResult Edit(int id)
         {
             var product = productService.GetById(Convert.ToInt32(id));

@@ -56,7 +56,7 @@ namespace WebBanHang.Web.Controllers
                                 Session["FullName"] = user.FirstName + " " + user.LastName;
                                 Session["UserId"] = user.UserId;
                                 Session["RoleId"] = userRole.RoleId;
-                                return Redirect("/Admin/Home/Index");
+                                return Redirect("/Admin/quan-tri/trang-chu");
                             }
                             else
                             {
