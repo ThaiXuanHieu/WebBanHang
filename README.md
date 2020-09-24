@@ -15,3 +15,21 @@
 7. Press F5 to Run
 
 ## Pages
+1. Login & Register
+![login-register](https://user-images.githubusercontent.com/48479522/94161963-6c20a780-feb0-11ea-8b01-2856aa4ea1c0.png)
+2. Reset Password
+![reset-password](https://user-images.githubusercontent.com/48479522/94162062-82c6fe80-feb0-11ea-9f9a-4f7d8be5aa9b.png)
+3. Home
+![home](https://user-images.githubusercontent.com/48479522/94162072-85295880-feb0-11ea-86f9-4488f7bf6a20.png)
+4. Product Category
+![category](https://user-images.githubusercontent.com/48479522/94162084-89ee0c80-feb0-11ea-83b5-aef41153862f.png)
+5. Detail Product
+![detail-product](https://user-images.githubusercontent.com/48479522/94162095-8c506680-feb0-11ea-92c4-02575afd8d9b.png)
+6. Cart
+![cart](https://user-images.githubusercontent.com/48479522/94162115-91151a80-feb0-11ea-8fc5-8af81c154e0d.png)
+7. Orders
+![orders](https://user-images.githubusercontent.com/48479522/94162120-92dede00-feb0-11ea-84bd-7d348da74de1.png)
+8. Product Management
+![product-management](https://user-images.githubusercontent.com/48479522/94162131-96726500-feb0-11ea-8683-ca96137dffba.png)
+9. Add & Update Product
+![add-update-product](https://user-images.githubusercontent.com/48479522/94162154-9b371900-feb0-11ea-862b-1cd068e17223.png)
