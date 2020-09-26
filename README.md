@@ -17,8 +17,8 @@
 ## Pages
 1. Login & Register
 ![login-register](https://user-images.githubusercontent.com/48479522/94161963-6c20a780-feb0-11ea-8b01-2856aa4ea1c0.png)
-2. Reset Password
-![reset-password](https://user-images.githubusercontent.com/48479522/94162062-82c6fe80-feb0-11ea-9f9a-4f7d8be5aa9b.png)
+2. Forgot Password
+![forgot-password](https://user-images.githubusercontent.com/48479522/94327300-3e348380-ffd4-11ea-8a4b-9ead75aa67ea.png)
 3. Home
 ![home](https://user-images.githubusercontent.com/48479522/94162072-85295880-feb0-11ea-86f9-4488f7bf6a20.png)
 4. Product Category
